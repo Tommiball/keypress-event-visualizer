@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <input type="checkbox" id="to_console" checked>Write to console</input><br>
+    <input type="checkbox" id="as_alert">Output as alert</input><br>
+    <br>
+    Input: 
+    <input id="eingabe" width=60></input>
+    <br><br>
+    <a title="Info about event properties and methods" href="https://www.w3schools.com/jsref/obj_keyboardevent.asp">see description</a>
+    <br><br>
+    Output:<br>
+    <div id="output" style="border: 3px solid blue; position: relative; width: 160px; height:120px; padding: 10px 30px;"></div>
+    <p>written by Michael Schneider, 9th October 2018</p>
+    
+    <script type="text/javascript">
+        document.getElementById("eingabe").addEventListener("keypress", key_callback)
+        
+        function key_callback (evt) {
+            let to_console = document.getElementById("to_console").checked;
+            let as_alert = document.getElementById("as_alert").checked;
+            let s="";
+            s += "charCode: " + evt.charCode + "\n";
+            s += "code: " + evt.code + "\n";
+            s += "isComposing: " + evt.isComposing + "\n";
+            s += "key: " + evt.key + "\n";
+            s += "keyCode: " + evt.keyCode + "\n";
+            s += "which: " + evt.which;
+            document.getElementById("output").innerHTML = s.split("\n").join("<br>");
+
+            if (to_console) {
+                console.log("charCode: " + evt.charCode);
+                console.log("code: " + evt.code);
+                console.log("isComposing: " + evt.isComposing);
+                console.log("key: " + evt.key);
+                console.log("keyCode: " + evt.keyCode);
+                console.log("which: " + evt.which);
+                console.log("");
+            }
+
+            if (as_alert) {
+                alert(s);
+            }
+        }
+    </script>
+</body>
+</html>
